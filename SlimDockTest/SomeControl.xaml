@@ -1,0 +1,23 @@
+﻿<!--
+    Copyright (c) Arash Khatami
+    Distributed under the MIT license. See the LICENSE file in the project root for more information.
+-->
+<UserControl x:Class="SlimDockTest.SomeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SlimDockTest"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Background="Blue" x:Name="blueColor">
+            <Slider x:Name="slider" Width="100" Minimum="0" Maximum="100" VerticalAlignment="Top"
+                    Margin="5" Tag="333"/>
+            <TextBox Text="{Binding Path=Value, ElementName=slider}" Width="100"
+                     VerticalAlignment="Center" Margin="5"/>
+            <TextBlock Text="{Binding Path=Tag, ElementName=slider}" Width="100"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

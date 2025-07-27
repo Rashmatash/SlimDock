@@ -1,0 +1,122 @@
+﻿<!--
+    Copyright (c) Arash Khatami
+    Distributed under the MIT license. See the LICENSE file in the project root for more information.
+-->
+    <Window x:Class="SlimDockTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SlimDockTest"
+        xmlns:v="clr-namespace:SlimDock;assembly=SlimDock"
+        mc:Ignorable="d" Background="#ff1f1f1f"
+        Title="MainWindow" Height="350" Width="1200">
+    <Window.Resources>
+        <Style TargetType="GridSplitter">
+            <Setter Property="Background" Value="#ff333333"/>
+        </Style>
+
+        <StackPanel Background="DarkCyan" x:Name="blueColor" x:Key="blueStack">
+            <Slider x:Name="slider" Width="100" Minimum="0" Maximum="100" VerticalAlignment="Top"
+                                        Margin="5" Tag="333"/>
+            <TextBox Text="{Binding Path=Value, ElementName=slider}" Width="100"
+                                         VerticalAlignment="Center" Margin="5"/>
+            <TextBlock Text="{Binding Path=Tag, ElementName=slider}" Width="100"
+                                         VerticalAlignment="Center"/>
+        </StackPanel>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--<TabControl>
+            <TabItem Header="AAAA">
+                <Grid Background="Green" x:Name="greenColor">
+                    <Slider x:Name="slider" Width="100" Minimum="0" Maximum="100" VerticalAlignment="Top"
+                                        Margin="0,32"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="BBBB">
+                <Grid Background="Blue" x:Name="blueColor">
+                    
+                    <TextBox Text="{Binding Path=Value, ElementName=slider}" Width="100"
+                                         VerticalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+        </TabControl>-->
+
+        <!--<v:SlimDockControl>
+            <v:SlimDockDocumentPane>
+                <v:SlimDockDocument Title="BlueColor">
+                    <Grid Background="Blue" x:Name="blueColor">
+                        <Slider x:Name="slider" Width="100" Minimum="0" Maximum="100" VerticalAlignment="Top"
+                                        Margin="0,32"/>
+                        <TextBox Text="{Binding Path=Value, ElementName=slider}" Width="100"
+                                         VerticalAlignment="Center"/>
+                    </Grid>
+                </v:SlimDockDocument>
+                <v:SlimDockDocument Title="GreenColor" CanFloat="False">
+                    <Grid Background="Green" x:Name="greenColor">
+                    </Grid>
+                </v:SlimDockDocument>
+            </v:SlimDockDocumentPane>
+        </v:SlimDockControl>-->
+
+        <v:SlimDockControl x:Name="slimDock1">
+            <v:SlimDockPane Orientation="Horizontal">
+                <v:SlimDockPane.Panel1>
+                    <v:SlimDockDocumentPane PanelWidth="200" PanelMinWidth="80" PanelMaxHeight="100">
+                        <v:SlimDockDocument Title="RedColor" CanClose="False" HideSingleDocumentHeader="True"
+                                            Content="{StaticResource blueStack}">
+                            <!--<Grid Background="DarkCyan" x:Name="redColor"/>-->
+                        </v:SlimDockDocument>
+                    </v:SlimDockDocumentPane>
+                </v:SlimDockPane.Panel1>
+                <v:SlimDockPane.Panel2>
+                    <v:SlimDockDocumentPane >
+                        <v:SlimDockDocument Title="GreenColor" CanFloat="False">
+                            <!--<Rectangle Width="64" Height="64" Fill="Green"/>-->
+                            <Grid Background="Green" x:Name="greenColor"/>
+                        </v:SlimDockDocument>
+                        <v:SlimDockDocument Title="BlueColor">
+                            <!--<Rectangle Width="64" Height="64" Fill="Blue" x:Name="blueColor"/>-->
+                            <local:SomeControl />
+                        </v:SlimDockDocument>
+                        <v:SlimDockDocument Title="PinkColor">
+                            <Rectangle Width="64" Height="64" Fill="Pink"/>
+                        </v:SlimDockDocument>
+                    </v:SlimDockDocumentPane>
+                </v:SlimDockPane.Panel2>
+            </v:SlimDockPane>
+        </v:SlimDockControl>
+
+        <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Left"/>
+
+        <v:SlimDockControl x:Name="slimDock2" Grid.Column="1" Margin="5,0,0,0">
+            <v:SlimDockPane Orientation="Vertical">
+                <v:SlimDockPane.Panel1>
+                    <v:SlimDockDocumentPane>
+                        <v:SlimDockDocument Title="Orange">
+                            <Rectangle Width="64" Height="64" Fill="OrangeRed" x:Name="lightRedColor"/>
+                        </v:SlimDockDocument>
+                    </v:SlimDockDocumentPane>
+                </v:SlimDockPane.Panel1>
+                <v:SlimDockPane.Panel2>
+                    <v:SlimDockDocumentPane PanelHeight="100" PanelMinHeight="50" PanelMaxHeight="150">
+                        <v:SlimDockDocument Title="LightGreen">
+                            <Rectangle Width="64" Height="64" Fill="LightGreen"/>
+                        </v:SlimDockDocument>
+                        <v:SlimDockDocument Title="LightBlue">
+                            <Rectangle Width="64" Height="64" Fill="LightBlue" x:Name="lightBlueColor"/>
+                        </v:SlimDockDocument>
+                        <v:SlimDockDocument Title="LightPink">
+                            <Rectangle Width="64" Height="64" Fill="LightPink"/>
+                        </v:SlimDockDocument>
+                    </v:SlimDockDocumentPane>
+                </v:SlimDockPane.Panel2>
+            </v:SlimDockPane>
+        </v:SlimDockControl>
+    </Grid>
+</Window>
